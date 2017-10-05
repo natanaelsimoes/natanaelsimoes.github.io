@@ -6,7 +6,7 @@ title: Blog
 {% for post in paginator.posts %}
 <div class="col-md-12 blog-post">
   <div class="post-title">
-    <a href="{{ post.url }}"><h1>{{ post.title }}</h1></a>
+    <a href="{{ post.url }}#page-title"><h1>{{ post.title }}</h1></a>
   </div>
   <div class="post-info">
     <span>{{ post.date | date: "%d %b %Y"}}</span>
@@ -16,7 +16,7 @@ title: Blog
     <a href="{{ post.url }}#comentarios" class="button button-style button-anim fa fa-long-arrow-right"><span><i class="fa fa-2x fa-comment"></i> Comentar</span></a>
   {% else %}
     <p>{{ post.excerpt }}</p>
-    <a href="{{ post.url }}" class="button button-style button-anim fa fa-long-arrow-right"><i class="fa fa-2x fa-newspaper-o"></i>Leia mais</a>
+    <a href="{{ post.url }}#page-title" class="button button-style button-anim fa fa-long-arrow-right"><i class="fa fa-2x fa-newspaper-o"></i>Leia mais</a>
   {% endif %}
 </div>
 {% endfor %}

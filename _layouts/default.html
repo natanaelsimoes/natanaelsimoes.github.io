@@ -93,7 +93,7 @@
 
               {% unless page.title == 'Blog' %}
                 <div class="sub-title">
-                  <h2>{{ page.title }}</h2>
+                  <h2 id="page-title">{{ page.title }}</h2>
                   {% unless page.date == nil %}
                     	<span class="alert alert-info pull-right hidden-sm hidden-xs">{{ page.date | date: "%d %b %Y"}}</span>
                       <div class="post-info hidden-md hidden-lg">{{ page.date | date: "%d %b %Y"}}</div>
