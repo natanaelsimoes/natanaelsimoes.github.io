@@ -1,0 +1,42 @@
+---
+layout: default
+title: Blog
+---
+<!-- Blog Post Start -->
+{% for post in paginator.posts %}
+<div class="col-md-12 blog-post">
+  <div class="post-title">
+    <a href="{{ post.url }}"><h1>{{ post.title }}</h1></a>
+  </div>
+  <div class="post-info">
+    <span>{{ post.date | date: "%d %b %Y"}}</span>
+  </div>
+  {% if post.more == false %}
+    {{ post.content }}
+    <a href="{{ post.url }}#comentarios" class="button button-style button-anim fa fa-long-arrow-right"><span><i class="fa fa-2x fa-comment"></i> Comentar</span></a>
+  {% else %}
+    <p>{{ post.excerpt }}</p>
+    <a href="{{ post.url }}" class="button button-style button-anim fa fa-long-arrow-right"><i class="fa fa-2x fa-newspaper-o"></i>Leia mais</a>
+  {% endif %}
+</div>
+{% endfor %}
+
+{% if paginator.total_pages > 1 %}
+<div class="row text-center">
+<ul class="pagination">
+  <li class="{% unless paginator.previous_page %}disabled{% endunless %}">
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Anterior</a>
+  </li>
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <li class="active"><span>{{ page }}</span></li>
+    {% elsif page == 1 %}
+      <li><a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a></li>
+    {% else %}
+      <li><a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a></li>
+    {% endif %}
+  {% endfor %}
+  <li class="{% unless paginator.next_page %}disabled{% endunless %}"><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Próximo &raquo;</a></li>
+</ul>
+</div>
+{% endif %}
