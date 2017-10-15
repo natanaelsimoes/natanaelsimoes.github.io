@@ -320,12 +320,8 @@ button {
 
 /* About Me (Left Sidebar) */
 
-.about-fixed {
-    position: fixed;
-    width: 20.8%;
-}
-
 .my-pic {
+    position: relative;
     width: 100%;
     box-shadow: -2px -1px 88px 0px rgba(0,0,0,0.17);
 }
@@ -1804,4 +1800,39 @@ blockquote {
 
 .uipasta-credit a:hover {
     color: #333333;
+}
+
+.post-image {
+  padding: 10px 0;
+}
+
+.post-image img {
+  max-width: 100%;
+}
+
+.post-image .post-image-caption {
+  font-weight: 300;
+  font-size: 12px;
+}
+
+@media only screen and (min-width: 992px) {
+  .post-image.left {
+    float: left;
+    width: 50%;
+    margin-right: 50px;
+  }
+  .post-image.right {
+    float: right;
+    width: 50%;
+    margin-left: 50px;
+  }
+  .post-image.left img, .post-image.right img {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .post-image img {
+    width: 100%;
+  }
 }

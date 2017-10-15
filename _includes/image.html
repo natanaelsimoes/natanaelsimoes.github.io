@@ -1,0 +1,6 @@
+<div class="post-image text-center {{ include.position }}">
+  <p><img src="{{ include.url }}" alt="{{ include.description }}"/></p>
+  {% if include.description %}
+    <p class="post-image-caption">{{ include.description }}</p>
+  {% endif %}
+</div>
