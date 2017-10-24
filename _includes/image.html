@@ -2,5 +2,8 @@
   <p><img src="{{ include.url }}" alt="{{ include.description }}"/></p>
   {% if include.description %}
     <p class="post-image-caption">{{ include.description }}</p>
+    {% if include.cite %}
+    <p class="post-image-caption">Fonte: <a href="{{ include.cite_url }}">{{ include.cite }}</a></p>
+    {% endif %}
   {% endif %}
 </div>
