@@ -95,11 +95,14 @@
             <div class="row">
 
               {% unless page.title == 'Blog' %}
-                <div class="sub-title">
-                  <h2 id="page-title">{{ page.title }}</h2>
+                <div class="col-md-12">
+                  <div class="sub-title">
+                    <h1 id="page-title">{{ page.title }}</h1>
+                  </div>
+                </div>
+                <div class="menu">
                   {% unless page.date == nil %}
-                    	<span class="alert alert-info pull-right hidden-sm hidden-xs">{{ page.date | date: "%d %b %Y"}}</span>
-                      <div class="post-info hidden-md hidden-lg">{{ page.date | date: "%d %b %Y"}}</div>
+                  	<span class="pull-right">{{ page.date | date: "%d %b %Y"}}</span>
                   {% endunless %}
                 </div>
               {% endunless %}

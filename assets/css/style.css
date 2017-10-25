@@ -1802,6 +1802,12 @@ blockquote {
     color: #333333;
 }
 
+.post-date {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .post-image {
   padding: 10px 0;
 }

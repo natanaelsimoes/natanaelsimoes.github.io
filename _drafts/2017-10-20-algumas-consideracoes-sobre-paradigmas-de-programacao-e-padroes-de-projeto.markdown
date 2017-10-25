@@ -73,7 +73,7 @@ exagero de não permitir a flexibilização do desenvolvimento pode custar caro 
 alguém. Vou elencar aqui dois personagens que podem ser afetados com esse tipo
 de comportamento: o desenvolvedor e o cliente.
 
-#### Implicações da (in)tolerância paradigmática para o desenvolvedor
+### Implicações da (in)tolerância paradigmática para o desenvolvedor
 
 Explorar outras formas de resolver o mesmo problema, mesmo que haja uma solução
 conhecida (na maioria dos casos é nativa da linguagem), faz com que o desenvolvedor
@@ -138,7 +138,7 @@ para a missão. Aquele foi o [meu primeiro programa em Python](https://github.co
 que usou a solução para aprimorar a didática no ensino de movimento retilíneo
 nas aulas de física do ensino médio.
 
-#### Implicações da (in)tolerância paradigmática para o usuário
+### Implicações da (in)tolerância paradigmática para o usuário
 
 Pode não parecer mas o resultado de se viajar por outros mundos não afeta apenas o viajante
 mas todos a sua volta. Já ouvi boatos por ai de situações como "teria ficado muito
@@ -156,6 +156,41 @@ linguagens têm propósitos específicos, e por serem especializadas tornam-se
 mais eficientes em realizar os objetivos para os quais foram projetadas.
 
 Assim temos que a exploração de outros jeitos de programar podem conduzir a escolhas
-de linguagens que entreguem ao usuário final:
-- **maior velocidade no processamento de dados específicos**: bla bla bla
-- **maior retorno sobre o investimento**: bla bla bla
+de linguagens que entreguem ao usuário final velocidade de processamento e ROI.
+
+**Maior velocidade no processamento de dados específicos**
+
+Você ficaria abismado em saber como as linguagens utilizam os recursos do computador
+para fazer o que fazem. Quanto mais recursos uma linguagem possui, mais tempo ela leva
+para executar as coisas: não tem como fugir disso.
+
+Para manter esse ar de super linguagem, elas precisam criar um monte de estruturas
+de controle envolta do seu código que por vezes nem você faz ideia de que estavam
+ali e portanto ficam ociosas o tempo inteiro, só esperando para serem utilizadas.
+Contudo estão ali gastando seu processador, sua memória, seu disco...
+
+Antes prosseguir entre nesses dois sites de benckmark de linguagens:
+- [AttractiveChaos](https://attractivechaos.github.io/plb/) para informações de
+tempos de execução e memória utilizados em algoritmos bem peculiares;
+- [The Computer Language Benchmark Game](http://benchmarksgame.alioth.debian.org),
+e neste selecione sua linguagem favorita para vê-la comparada com outra (no fim
+da página tem links para controlar a outra linguagem com a qual será comparada,
+como por exemplo [neste link você pode ver PHP contra Java](http://benchmarksgame.alioth.debian.org/u64q/compare.php?lang=php&lang2=java)).
+
+Algumas linguagens possuem sérios problemas de I/O, outras têm maior dificuldade
+no gerenciamento de memória. Há casos que processos
+[estocásticos](https://pt.wikipedia.org/wiki/Estocástico)
+podem produzir resultados bem catastróficos. Por isso a linguagem, seu propósito
+e o problema sendo analisado precisam estar de comum acordo, por questões de
+qualidade do produto final.
+
+**Maior retorno sobre o investimento (ROI)**
+
+Supondo que escolhendo uma linguagem que tem como propósito solucionar problemas relacionados
+com o do usuário, e supondo que o desenvolvedor consiga com a menor curva de aprendizagem
+possível chegar à solução, é altamente provável que o tempo de produção pode ser reduzido
+a tal ponto de permitir a entrega de partes funcionais do sistema com menos
+esforço braçal/cerebral. Isto quer dizer que o cliente terá diante de si um sistema
+funcional que faça valer o investimento realizado em menos tempo.
+
+### Ainda temos muito que codar
