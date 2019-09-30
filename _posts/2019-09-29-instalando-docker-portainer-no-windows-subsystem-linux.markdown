@@ -4,6 +4,10 @@ title: Instalando Docker e Portainer no Windows Subsystem Linux
 date: '2019-09-29 21:56:28 -0400'
 ---
 
+A containerização é parte integrante do dia-a-dia dos DevOps. É a melhor opção quando se tenta criar um ambiente seguro, replicável e escalável para se trabalhar com equipes de desenvolvimento de qualquer porte. O uso de container agiliza tanto o processo de criação de software, pela distribuição dos arquivos de configuração de um servidor compatível com as necessidade do software, quanto o processo de instalação e gerenciamento de um servidor de aplicação em produção.
+
+Este tutorial o guiará na instalação do Docker dentro de um Windows Subsystem Linux (WSL) para que você não tenha que usar VirtualBox ou Hyper-V para criar as máquinas. Eu mesmo tive muitos problemas ao tentar ativar os Containers Linux utilizando o Docker Desktop, e essa foi a solução mais efetiva que encontrei para contorná-los. Isso além de utilizar melhor os recursos de hardware já que a implementação deste Docker é nativo do Linux!
+
 ### Pré-requisitos
 
 Para iniciar você precisará dos seguintes softwares instalados:
