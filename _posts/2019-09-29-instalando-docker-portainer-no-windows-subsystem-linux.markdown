@@ -169,6 +169,18 @@ Deixe selecionado **Docker environment** como tipo de ambiente e dê um nome ao 
 
 Você será redirecionado para a página inicial mostrando os Endpoints. Clique no seu servidor e comece a orquestrar seu containers WSL com Portainer.
 
+### Iniciando o Portainer quando o Windows bootar
+
+Da mesma forma que fizemos com o Docker, vamos usar novamente o _Gerenciador de Tarefas_ para criar uma tarefa que execute o Portainer usando os parâmetros do tópico anterior.
+
+Faça exatamente da mesma forma que com o Docker, com alteração apenas na aba **Ações**: em **Programa/script** clique em _Procurar..._ e navegue até à pasta onde você descompactou o Pontainer. Selecione o arquivo `portainer.exe`. **Adicione argumentos** com o conteúdo abaixo substituindo o caminho do exemplo pelo **caminho absoluto** desde a unidade de disco até o arquivo `templates.json` que está junto com o executável do Portainer.
+
+```
+--template-file="C:\Minha\Pasta\Portainer\templates.json"
+```
+
+Termine de fazer as configurações tarefa e reinicie o computador. Quando ligar novamente, abra seu navegador e digite `http://localhost:9000`. Seu Portainer já deve estar configurado com ligado corretamente no Endpoint do Docker no WSL.
+
 ### Não tente executar um bash
 
 Se você tentar executar um bash seja via Portainer ou mesmo pelo próprio Docker do WSL você vai se deparar com um erro dizendo que não foi possível criar uma chave de sessão, já que esta não foi implementada no kernel do 16.04 LTS.
