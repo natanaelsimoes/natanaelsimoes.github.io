@@ -4,9 +4,11 @@ title: Instalando Docker e Portainer no Windows Subsystem Linux
 date: '2019-09-29 21:56:28 -0400'
 ---
 
+Este tutorial o guiará na instalação do Docker dentro de um Windows Subsystem Linux (WSL) para que você não tenha que usar VirtualBox ou Hyper-V para criar as máquinas. Eu mesmo tive muitos problemas ao tentar ativar os Containers Linux utilizando o Docker Desktop, e essa foi a solução mais efetiva que encontrei para contorná-los. Isso além de utilizar melhor os recursos de hardware já que a implementação deste Docker é nativo do Linux!
+
 A containerização é parte integrante do dia-a-dia dos DevOps. É a melhor opção quando se tenta criar um ambiente seguro, replicável e escalável para se trabalhar com equipes de desenvolvimento de qualquer porte. O uso de container agiliza tanto o processo de criação de software, pela distribuição dos arquivos de configuração de um servidor compatível com as necessidade do software, quanto o processo de instalação e gerenciamento de um servidor de aplicação em produção.
 
-Este tutorial o guiará na instalação do Docker dentro de um Windows Subsystem Linux (WSL) para que você não tenha que usar VirtualBox ou Hyper-V para criar as máquinas. Eu mesmo tive muitos problemas ao tentar ativar os Containers Linux utilizando o Docker Desktop, e essa foi a solução mais efetiva que encontrei para contorná-los. Isso além de utilizar melhor os recursos de hardware já que a implementação deste Docker é nativo do Linux!
+Se você não sabe o que são essas coisas que falei até aqui, pare e leia agora sobre [WSL](https://medium.com/joaorobertopb/wsl-linux-nativo-no-windows-sem-vm-1cd6e352c995), 
 
 ### Pré-requisitos
 
@@ -70,27 +72,14 @@ Crie um script em `/usr/local/sbin/`:
 $ sudo nano /usr/local/sbin/start_docker.sh
 ```
 
-que conterá os seguintes comandos para executar o serviço do Docker e desabilitar a verificação TLS no futuro quando partirmos para a configuração do Portainer (tenha certeza de substituir **@SEU_USUARIO** pelo nome do seu usuário no WSL):
+que conterá os seguintes comandos para executar o serviço do Docker e desabilitar a verificação TLS no futuro quando partirmos para a configuração do Portainer:
 
 ```bash
 #!/usr/bin/env bash
 
-export DOCKER_CERT_PATH=/mnt/c/Users/@SEU_USUARIO/.docker/machine/certs/
 export DOCKER_TLS_VERIFY=1
 sudo cgroupfs-mount
-sudo service docker start
-```
-
-Vamos aproveitar para preparar o terreno para o uso do Portainer e habilitar a API de acesso via TCP. Edite o arquivo com as configurações do serviço do Docker:
-
-```bash
-$ sudo nano /lib/systemd/system/docker.service
-```
-
-e altere o item `ExecStart` dentro da chave `[Service]` com o seguinte conteúdo:
-
-```
-ExecStart=/usr/bin/docker daemon -H fd:// -H tcp://0.0.0.0:
+sudo dockerd -H tcp://0.0.0.0: -H unix:///var/run/docker.sock
 ```
 
 Salve tudo, habilite a execução do script de inicialização e rode:
@@ -179,6 +168,22 @@ Com isto o Portainer deve ser executado e você poderá acessar pelo browser atr
 Deixe selecionado **Docker environment** como tipo de ambiente e dê um nome ao seu servidor. Em **Endpoint URL** insira `localhost:2375` e em **Public IP** entre com `localhost`. Deixe o **TLS desabilitado** e salve.
 
 Você será redirecionado para a página inicial mostrando os Endpoints. Clique no seu servidor e comece a orquestrar seu containers WSL com Portainer.
+
+### Não tente executar um bash
+
+Se você tentar executar um bash seja via Portainer ou mesmo pelo próprio Docker do WSL você vai se deparar com um erro dizendo que não foi possível criar uma chave de sessão, já que esta não foi implementada no kernel do 16.04 LTS.
+
+As duas forma de abrir um bash diretamente no container é por `attach`. 
+
+- Via WSL rode o comando abaixo, e utilize a sequência de teclas `Ctrl+A, X` para liberar o container. Se você executar `exit` o container irá parar:
+
+```bash
+$ sudo docker attach --detach-keys="ctrl-a,x" nome_do_container
+```
+
+Incluí o parâmetro para personalização do _detach_, pois em meus testes não consegui executar a sequência padrão de liberação, que é `Ctrl+P, Ctrl+Q`. Portanto há essa adição ao `attach` tradicional por conta disso.
+
+- Via Portainer, cliquem e **Containers**, selecione o container desejado e clique em **Attach**. Este com certeza é o jeito mais simples de executar comandos diretamente no container.
 
 ### Referências
 1. Faun no Medium: [https://medium.com/faun/docker-running-seamlessly-in-windows-subsystem-linux-6ef8412377aa](https://medium.com/faun/docker-running-seamlessly-in-windows-subsystem-linux-6ef8412377aa)
